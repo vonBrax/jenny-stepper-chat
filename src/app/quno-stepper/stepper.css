@@ -1,0 +1,114 @@
+:root {
+  --horizontal-stepper-header-height: 72px;
+  --stepper-label-header-height: 24px;
+  --stepper-side-gap: 24px;
+  --vertical-stepper-content-margin: 36px;
+  --stepper-line-width: 1px;
+  --stepper-line-gap: 8px;
+}
+
+.quno-stepper-vertical,
+.quno-stepper-horizontal {
+  display: block;
+}
+
+.quno-horizontal-stepper-header-container {
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+}
+
+.quno-stepper-horizontal-line {
+  border-top-width: var(--stepper-line-width);
+  border-top-style: solid;
+  flex: auto;
+  height: 0;
+  margin: 0 var(--stepper-line-gap) - var(--stepper-side-gap);
+  min-width: var(--stepper-line-gap) + var(--stepper-side-gap);
+}
+
+.quno-horizontal-stepper-header {
+  display: flex;
+  height: var(--horizontal-stepper-header-height);
+  overflow: hidden;
+  align-items: center;
+  padding: 0 var(--stepper-side-gap);
+}
+
+.quno-step-icon,
+.quno-step-icon-not-touched {
+  margin-right: var(--stepper-line-gap);
+  flex:none;
+}
+
+.quno-step-icon[dir="rtl"],
+.quno-step-icon-not-touched[dir="rtl"] {
+  margin-right: 0;
+  margin-left: var(--stepper-line-gap)
+}
+
+.quno-vertical-stepper-head {
+  display: flex;
+  align-items: center;
+  padding: var(--stepper-side-gap);
+  max-height: var(--stepper-label-header-height);
+}
+
+.quno-vertical-stepper-head .mat-step-icon,
+.quno-vertical-stepper-head .mat-step-icon-not-touched {
+  margin-right: var(--vertical-stepper-content-margin) - var(--stepper-side-gap);
+}
+
+.quno-vertical-stepper-head .mat-step-icon [dir='rtl'] ,
+.quno-vertical-stepper-head .mat-step-icon-not-touched [dir='rtl'] {
+  margin-right: 0;
+  margin-left: var(--vertical-stepper-content-margin) - var(--stepper-side-gap);
+}
+
+.quno-horizontal-stepper-content[aria-expanded="false"] {
+  height: 0;
+  overflow: hidden;
+}
+
+.quno-horizontal-content-container {
+  overflow: hidden;
+  padding: 0 var(--stepper-side-gap) var(--stepper-side-gap) var(--stepper-side-gap);
+}
+
+.quno-vertical-content-container {
+  margin-left: var(--vertical-stepper-content-margin);
+  border: 0;
+  position: relative;
+}
+
+.quno-vertical-content-container [dir="rtl"] {
+  margin-left: 0;
+  margin-right: var(--vertical-stepper-content-margin);
+}
+
+.quno-stepper-vertical-line::before {
+  content: '';
+  position: absolute;
+  top: var(--stepper-line-gap) - var(--stepper-side-gap);
+  bottom: var(--stepper-line-gap) - var(--stepper-side-gap);
+  left: 0;
+  border-left-width: var(--stepper-line-width);
+  border-left-style: solid;
+}
+
+.quno-stepper-vertical-line[dir="rtl"]::before {
+  left: auto;
+  right: 0;
+}
+
+.quno-vertical-stepper-content {
+  overflow: hidden;
+}
+
+.quno-vertical-content {
+  padding: 0 var(--stepper-side-gap) var(--stepper-side-gap) var(--stepper-side-gap);
+}
+
+.quno-step:last-child .quno-vertical-content-container {
+  border: none;
+}

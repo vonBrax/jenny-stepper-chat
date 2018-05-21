@@ -50,7 +50,6 @@ export class QunoStepHeader implements OnDestroy {
     private _element: ElementRef,
     /* changeDetectorRef: ChangeDetectorRef */ ) {
       _focusMonitor.monitor(_element.nativeElement, true);
-    console.log(this.iconOverrides);
     }
 
   ngOnDestroy() {
