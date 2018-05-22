@@ -1,0 +1,58 @@
+:root {
+  --foreground: #585a51;
+  --background: rgba(255, 202, 87, .5);
+  --primary: #FFCA57;
+}
+
+.quno-step-header.cdk-keyboard-focused,
+.quno-step-header.cdk-program-focused,
+.quno-step-header:hover {
+    background-color: var(--background);
+}   
+
+.quno-step-label,
+.quno-step-optional {
+    color: var(--foreground);
+}
+
+.quno-step-icon {
+    background-color: var(--primary);
+    color: var(--foreground);
+}
+
+.quno-step-icon-not-touched {
+    background-color: var(--foreground);
+    color: var(--primary);
+}
+
+.quno-step-label.quno-step-label-active {
+    color: var(--foreground);
+}
+
+.quno-stepper-horizontal,
+.quno-stepper-vertical {
+    /* background-color: var(--background); */
+    background-color: #FFF;
+}
+
+.quno-stepper-vertical-line::before {
+    border-left-color: var(--foreground);
+}
+
+.quno-stepper-horizontal-line {
+    border-top-color: var(--foreground);
+}
+
+.quno-stepper-vertical, .quno-stepper-horizontal {
+    font-family: inherit;
+}
+
+.quno-step-label {
+    font-size: inherit;
+    font-weight: inherit;
+}
+
+.quno-step-label-selected {
+    font-size: inherit;
+    font-weight: inherit;
+}

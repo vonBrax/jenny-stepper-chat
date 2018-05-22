@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 import { AppComponent } from './app.component';
@@ -10,6 +11,7 @@ import { ContainerComponent } from './container/container.component';
 import { StepComponent } from './step/step.component';
 
 import { QunoStepperModule } from './quno-stepper';
+import { MatStepperModule } from '@angular/material/stepper';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { QunoStepperModule } from './quno-stepper';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    QunoStepperModule
+    ReactiveFormsModule,
+    QunoStepperModule,
+    MatStepperModule
   ],
   providers: [],
   bootstrap: [AppComponent]

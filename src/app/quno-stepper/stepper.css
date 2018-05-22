@@ -47,20 +47,20 @@
   margin-left: var(--stepper-line-gap)
 }
 
-.quno-vertical-stepper-head {
+.quno-vertical-stepper-header {
   display: flex;
   align-items: center;
   padding: var(--stepper-side-gap);
   max-height: var(--stepper-label-header-height);
 }
 
-.quno-vertical-stepper-head .mat-step-icon,
-.quno-vertical-stepper-head .mat-step-icon-not-touched {
+.quno-vertical-stepper-header .mat-step-icon,
+.quno-vertical-stepper-header .mat-step-icon-not-touched {
   margin-right: calc(var(--vertical-stepper-content-margin) - var(--stepper-side-gap));
 }
 
-.quno-vertical-stepper-head .mat-step-icon [dir='rtl'] ,
-.quno-vertical-stepper-head .mat-step-icon-not-touched [dir='rtl'] {
+.quno-vertical-stepper-header .mat-step-icon [dir='rtl'] ,
+.quno-vertical-stepper-header .mat-step-icon-not-touched [dir='rtl'] {
   margin-right: 0;
   margin-left: calc(var(--vertical-stepper-content-margin) - var(--stepper-side-gap));
 }

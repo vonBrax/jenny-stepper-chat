@@ -1,5 +1,7 @@
 <div class="quno-step" *ngFor="let step of _steps; let i = index; let isLast = last">
-  <quno-step-header class="quno-vertical-stepper-header"
+  <quno-step-header
+                    [@headerTransition]="_getAnimationDirection(i)"
+                    class="quno-vertical-stepper-header"
                     (click)="step.select()"
                     (keydown)="_onKeydown($event)"
                     [tabindex]="_getFocusIndex() == i ? 0 : -1"
@@ -10,12 +12,13 @@
                     [state]="_getIndicatorType(i)"
                     [label]="step.stepLabel || step.label"
                     [selected]="selectedIndex === i"
-                    [active]="step.completed || selectedIndex === i || !liner"
+                    [active]="step.completed || selectedIndex === i || !linear"
                     [optional]="step.optional"
                     [iconOverrides]="_iconOverrides">
     </quno-step-header>
 
-    <div class="quno-vertical-content-container" [class.quno-stepper-vertical-line]="!isLast">
+    <!-- <div class="quno-vertical-content-container" [class.quno-stepper-vertical-line]="!isLast"> -->
+    <div class="quno-vertical-content-container">
       <div class="quno-vertical-stepper-content"
            role="tabpanel"
            [@stepTransition]="_getAnimationDirection(i)"
@@ -28,4 +31,5 @@
         </div>
       </div>
     </div>
+    <!-- <div *ngIf="selectedIndex !== i && step.completed" class="selected-answer"></div> -->
 </div>

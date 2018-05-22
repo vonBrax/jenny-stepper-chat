@@ -140,7 +140,7 @@ export class QunoHorizontalStepper extends QunoStepper { }
     'aria-orientation': 'vertical',
     'role': 'tablist'
   },
-  animations: [qunoStepperAnimations.verticalStepTransition],
+  animations: [qunoStepperAnimations.verticalStepTransition, qunoStepperAnimations.verticalStepHeaderTransition],
   providers: [{provide: QunoStepper, useExisting: QunoVerticalStepper}],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush

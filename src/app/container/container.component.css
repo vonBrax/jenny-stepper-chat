@@ -1,0 +1,119 @@
+:host {
+    display: flex;
+    justify-content: center;
+}
+
+* {
+    outline: none;
+  }
+
+  :host /deep/ .quno-step-label{
+    /* background: #FFCA57; */
+    color: #585a51;
+  }
+  /*
+  :host /deep/ .quno-step-label img,
+  :host /deep/ .mat-step-label img {
+    max-width: 64px;
+  }
+  */
+  quno-vertical-stepper {
+    font-family: "Adelle SansW01", Arial, sans-serif;
+    max-width: 500px;
+  }
+  
+  :host /deep/ .quno-vertical-content-container {
+    margin-top: 16px;
+  }
+
+  :host /deep/ .quno-vertical-stepper-content {
+    overflow: visible;
+  }
+
+  .quno-step-content-wrapper {
+    position: relative;
+  }
+  .quno-step-content-wrapper .quno-lens {
+    background: #FFCA57;
+    border-radius: 5px;
+    border-radius: 50% 50% 50% 0;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    width: 50px;
+    position: absolute;
+    right: 100%;
+    bottom: 100%;
+    transform: translate(50%, 50%);
+  }
+  .quno-step-content-wrapper .quno-lens img {
+    max-width: 70%;
+  }
+
+  .quno-question {
+    padding: 16px;
+    border: 1px solid #585a51;
+    border-radius: 5px;
+  }
+
+  .quno-answers {
+    display: flex;
+    align-items: flex-end;
+    flex-flow: column nowrap;
+    margin-top: .5em;
+  }
+
+  .quno-answers .btn-answer {
+    background-color: #FFCA57;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 0 5px 0 (rgba 0, 0, 0, 0.3);
+    color: #585a51;
+    cursor: pointer;
+    font-size: 1em;
+    margin: 2.5px 0;
+    padding: .5em 1em;
+    transition: transform 200ms ease-in, box-shadow 200ms ease-in;
+  }
+
+  .quno-answers .btn-answer:hover {
+      transform: scale(1.15);
+      box-shadow: 0 0 20px -2px rgba(0, 0, 0, .30);
+  }
+
+  .quno-answers .btn-answer input[type="radio"] {
+      height: 0px;
+      width: 0px;
+      opacity: 0;
+  }
+
+  .quno-answers .user {
+    background-image: url(https://res.cloudinary.com/junomedical/image/upload/f_auto,g_face,c_fill,w_100,h_100,fl_progressive/image/ben2.png);;
+    background-position: center;
+    background-size: cover;
+    border-radius: 5px;
+    border-radius: 50% 50% 0 50%;
+    box-sizing: border-box;
+    margin-bottom: .5em;
+    height: 50px;
+    width: 50px;
+    /*
+    position: absolute;
+    right: 100%;
+    bottom: 100%;
+    transform: translate(50%, 50%); 
+    */
+  }
+
+  :host /deep/ .selected-answer {
+    background-color: #FFCA57;
+    border: none;
+    border-radius: 5px;
+    color: #585a51;
+    cursor: pointer;
+    font-size: 1em;
+    margin: 2.5px 0;
+    padding: .5em 1em;
+  }

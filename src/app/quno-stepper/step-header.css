@@ -1,4 +1,4 @@
-quno-step-header {
+:root {
   --stepper-label-header-height: 24px;
   --stepper-label-min-width: 50px;
   --stepper-side-gap: 24px;
@@ -13,7 +13,7 @@ quno-step-header {
   outline: none;
   cursor: pointer;
   position: relative;
-  box-sizing: border-box;
+  box-sizing: content-box;
 }
 
 .quno-step-optional {

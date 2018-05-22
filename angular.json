@@ -22,7 +22,7 @@
             ],
             "styles": [
               "src/styles.css",
-              "src/app/quno-stepper/_stepper-theme.scss"
+              "src/app/quno-stepper/stepper-theme.css"
             ],
             "scripts": []
           },

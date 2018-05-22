@@ -14,8 +14,4 @@ export const data = [
 })
 export class AppComponent {
   questions = data;
-
-  changeVisibility(index: number): void {
-  this.questions[index].shouldBeVisible = !this.questions[index].shouldBeVisible;
-  }
 }
