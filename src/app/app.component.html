@@ -12,8 +12,23 @@
 
 -->
 
+<style>
+  :host /deep/ .quno-step-label{
+    background: #FFCA57;
+    color: #585a51;
+  }
+  :host /deep/ .quno-step-label img {
+    width: 64px;
+    height: 64px;
+  }
+</style>
+
 <quno-vertical-stepper>
-  <quno-step label="Step 1">
+  <quno-step>
+    <ng-template qunoStepLabel>
+      <img src="../assets/circle.png">
+      <h3>This would pretty much be a question</h3>
+    </ng-template>
     Content for step 1
     <div>
       <button type="button" qunoStepperNext>NEXT</button>

@@ -23,8 +23,8 @@
   border-top-style: solid;
   flex: auto;
   height: 0;
-  margin: 0 var(--stepper-line-gap) - var(--stepper-side-gap);
-  min-width: var(--stepper-line-gap) + var(--stepper-side-gap);
+  margin: 0 calc(var(--stepper-line-gap) - var(--stepper-side-gap));
+  min-width: calc(var(--stepper-line-gap) + var(--stepper-side-gap));
 }
 
 .quno-horizontal-stepper-header {
@@ -56,13 +56,13 @@
 
 .quno-vertical-stepper-head .mat-step-icon,
 .quno-vertical-stepper-head .mat-step-icon-not-touched {
-  margin-right: var(--vertical-stepper-content-margin) - var(--stepper-side-gap);
+  margin-right: calc(var(--vertical-stepper-content-margin) - var(--stepper-side-gap));
 }
 
 .quno-vertical-stepper-head .mat-step-icon [dir='rtl'] ,
 .quno-vertical-stepper-head .mat-step-icon-not-touched [dir='rtl'] {
   margin-right: 0;
-  margin-left: var(--vertical-stepper-content-margin) - var(--stepper-side-gap);
+  margin-left: calc(var(--vertical-stepper-content-margin) - var(--stepper-side-gap));
 }
 
 .quno-horizontal-stepper-content[aria-expanded="false"] {
@@ -89,8 +89,8 @@
 .quno-stepper-vertical-line::before {
   content: '';
   position: absolute;
-  top: var(--stepper-line-gap) - var(--stepper-side-gap);
-  bottom: var(--stepper-line-gap) - var(--stepper-side-gap);
+  top: calc(var(--stepper-line-gap) - var(--stepper-side-gap));
+  bottom: calc(var(--stepper-line-gap) - var(--stepper-side-gap));
   left: 0;
   border-left-width: var(--stepper-line-width);
   border-left-style: solid;
