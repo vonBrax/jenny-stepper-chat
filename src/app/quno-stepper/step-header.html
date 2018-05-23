@@ -1,4 +1,17 @@
 <div class="quno-step-header-ripple" mat-ripple [matRippleTrigger]="_getHostElement()"></div>
+<div class="quno-step-label"
+  [class.quno-step-label-active]="active"
+  [class.quno-step-label-selected]="selected">
+
+  <!-- If there is a label template, use it-->
+  <ng-container *ngIf="_templateLabel()" [ngTemplateOutlet]="_templateLabel()!.template"></ng-container>
+
+  <!-- If there is no template label, fall back to the text label -->
+  <div class="quno-step-text-label" *ngIf="_stringLabel()">{{label}}</div>
+
+  <div class="quno-step-optional" *ngIf="optional">Optional</div>
+
+</div>
 <div [class.quno-step-icon]="state !== 'number' || selected"
      [class.quno-step-icon-not-touched]="state == 'number' && !selected"
      [ngSwitch]="state">
@@ -30,19 +43,5 @@
       [ngTemplateOutletContext]="_getIconContext()"></ng-container>
     <mat-icon *ngSwitchDefault>done</mat-icon>
   </ng-container>
-
-</div>
-
-<div class="quno-step-label"
-  [class.quno-step-label-active]="active"
-  [class.quno-step-label-selected]="selected">
-
-  <!-- If there is a label template, use it-->
-  <ng-container *ngIf="_templateLabel()" [ngTemplateOutlet]="_templateLabel()!.template"></ng-container>
-
-  <!-- If there is no template label, fall back to the text label -->
-  <div class="quno-step-text-label" *ngIf="_stringLabel()">{{label}}</div>
-
-  <div class="quno-step-optional" *ngIf="optional">Optional</div>
 
 </div>

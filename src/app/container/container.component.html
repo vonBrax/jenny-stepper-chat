@@ -1,14 +1,14 @@
 <form [formGroup]="formGroup">
 <quno-vertical-stepper linear>
   <quno-step [stepControl]="formGroup.get('tos_agree')">
+    
     <ng-template qunoStepLabel>
-
       <div class="selected-answer-wrap">
         <div class="left">
           <div class="quno-lens">
             <img src="../assets/quno_lens.png">
           </div>
-          <span>Terms of Service</span>
+          <div class="quno-question" [innerHTML]="step1.innerHTML"></div> 
         </div>
         <div class="right">
           <div class="user"></div>
@@ -17,13 +17,13 @@
           </div>
         </div>
       </div>
-
     </ng-template>
+
     <div class="quno-step-content-wrapper">
       <div class="quno-lens quno-lens--absolute">
         <img src="../assets/quno_lens.png">
       </div>
-      <div class="quno-question">
+      <div class="quno-question" #step1>
         <p>Hi,</p>
         <p>In order for us to answer medical questions, we need you to agree to the Terms and Conditions and that Qunomedical may collect, process, use, and disclose your personal information, including your health data, in order to provide a personal and customized service and as further detailed in your Consent Declaration.</p>
       </div>
@@ -37,15 +37,29 @@
   </quno-step>
 
   <quno-step [stepControl]="formGroup.get('additional_info_grafts')">
+    
     <ng-template qunoStepLabel>
-      <span>How many grafts do you need?</span>
-      <div class="selected-answer">{{formGroup.get('additional_info_grafts').value}}</div>
+      <div class="selected-answer-wrap">
+        <div class="left">
+          <div class="quno-lens">
+            <img src="../assets/quno_lens.png">
+          </div>
+          <div class="quno-question" [innerHTML]="step2.innerHTML"></div> 
+        </div>
+        <div class="right">
+          <div class="user"></div>
+          <div class="selected-answer">
+            <span>{{formGroup.get('additional_info_grafts').value}}</span>
+          </div>
+        </div>
+      </div>
     </ng-template>
+
     <div class="quno-step-content-wrapper">
       <div class="quno-lens quno-lens--absolute">
         <img src="../assets/quno_lens.png">
       </div>
-      <div class="quno-question">
+      <div class="quno-question" #step2>
         <p>How many grafts do you need?</p>
       </div>
       <div class="quno-answers" (click)="handleClick($event)">
@@ -60,15 +74,29 @@
     </div>
   </quno-step>
   <quno-step [stepControl]="formGroup.get('additional_info_age')">
+   
     <ng-template qunoStepLabel>
-      <span>How old are you?</span>
-      <div class="selected-answer">{{formGroup.get('additional_info_age').value}}</div>
+      <div class="selected-answer-wrap">
+        <div class="left">
+          <div class="quno-lens">
+            <img src="../assets/quno_lens.png">
+          </div>
+          <div class="quno-question" [innerHTML]="step3.innerHTML"></div> 
+        </div>
+        <div class="right">
+          <div class="user"></div>
+          <div class="selected-answer">
+            <span>{{formGroup.get('additional_info_age').value}}</span>
+          </div>
+        </div>
+      </div>
     </ng-template>
+
    <div class="quno-step-content-wrapper">
       <div class="quno-lens quno-lens--absolute">
         <img src="../assets/quno_lens.png">
       </div>
-      <div class="quno-question">
+      <div class="quno-question" #step3>
         <p>How old are you?</p>
       </div>
       <div class="quno-answers">
