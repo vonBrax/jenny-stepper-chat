@@ -21,7 +21,7 @@
     font-family: "Adelle SansW01", Arial, sans-serif;
     max-width: 500px;
   }
-  
+
   :host /deep/ .quno-vertical-content-container {
     margin-top: 16px;
   }
@@ -33,7 +33,7 @@
   .quno-step-content-wrapper {
     position: relative;
   }
-  .quno-step-content-wrapper .quno-lens {
+ .quno-lens {
     background: #FFCA57;
     border-radius: 5px;
     border-radius: 50% 50% 50% 0;
@@ -43,12 +43,16 @@
     justify-content: center;
     height: 50px;
     width: 50px;
+  }
+
+  .quno-lens--absolute {
     position: absolute;
     right: 100%;
     bottom: 100%;
     transform: translate(50%, 50%);
   }
-  .quno-step-content-wrapper .quno-lens img {
+
+  .quno-lens img {
     max-width: 70%;
   }
 
@@ -89,7 +93,7 @@
       opacity: 0;
   }
 
-  .quno-answers .user {
+  .user {
     background-image: url(https://res.cloudinary.com/junomedical/image/upload/f_auto,g_face,c_fill,w_100,h_100,fl_progressive/image/ben2.png);;
     background-position: center;
     background-size: cover;
@@ -103,11 +107,24 @@
     position: absolute;
     right: 100%;
     bottom: 100%;
-    transform: translate(50%, 50%); 
+    transform: translate(50%, 50%);
     */
   }
+  :host /deep/ quno-step-header {
+    max-height: initial;
+  }
 
-  :host /deep/ .selected-answer {
+  :host /deep/ .quno-step-label {
+    width: 100%;
+  }
+
+  .selected-answer-wrap {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .selected-answer {
     background-color: #FFCA57;
     border: none;
     border-radius: 5px;

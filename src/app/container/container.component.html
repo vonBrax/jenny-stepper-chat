@@ -2,11 +2,25 @@
 <quno-vertical-stepper linear>
   <quno-step [stepControl]="formGroup.get('tos_agree')">
     <ng-template qunoStepLabel>
-      <span>Terms of Service</span> 
-      <div class="selected-answer" selectedAnswer></div>
+
+      <div class="selected-answer-wrap">
+        <div class="left">
+          <div class="quno-lens">
+            <img src="../assets/quno_lens.png">
+          </div>
+          <span>Terms of Service</span>
+        </div>
+        <div class="right">
+          <div class="user"></div>
+          <div class="selected-answer">
+            <span>{{formGroup.get('tos_agree').value}}</span>
+          </div>
+        </div>
+      </div>
+
     </ng-template>
     <div class="quno-step-content-wrapper">
-      <div class="quno-lens">
+      <div class="quno-lens quno-lens--absolute">
         <img src="../assets/quno_lens.png">
       </div>
       <div class="quno-question">
@@ -21,9 +35,14 @@
     </div>
     <button type="button" #btnNext qunoStepperNext style="display:none">NEXT</button>
   </quno-step>
-  <quno-step label="How many grafts do you need?" [stepControl]="formGroup.get('additional_info_grafts')">
+
+  <quno-step [stepControl]="formGroup.get('additional_info_grafts')">
+    <ng-template qunoStepLabel>
+      <span>How many grafts do you need?</span>
+      <div class="selected-answer">{{formGroup.get('additional_info_grafts').value}}</div>
+    </ng-template>
     <div class="quno-step-content-wrapper">
-      <div class="quno-lens">
+      <div class="quno-lens quno-lens--absolute">
         <img src="../assets/quno_lens.png">
       </div>
       <div class="quno-question">
@@ -39,11 +58,14 @@
         <label class="btn-answer"><input type="radio" name="additional_info_grafts" formControlName="additional_info_grafts" value="What is a graft?"><span>What is a graft?</span></label>
       </div>
     </div>
-    <div class="selected-answer">Hallo 2</div>
   </quno-step>
-  <quno-step label="How old are you?" [stepControl]="formGroup.get('additional_info_age')">
+  <quno-step [stepControl]="formGroup.get('additional_info_age')">
+    <ng-template qunoStepLabel>
+      <span>How old are you?</span>
+      <div class="selected-answer">{{formGroup.get('additional_info_age').value}}</div>
+    </ng-template>
    <div class="quno-step-content-wrapper">
-      <div class="quno-lens">
+      <div class="quno-lens quno-lens--absolute">
         <img src="../assets/quno_lens.png">
       </div>
       <div class="quno-question">
