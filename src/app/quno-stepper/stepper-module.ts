@@ -7,8 +7,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { QunoHorizontalStepper, QunoStep, QunoStepper, QunoVerticalStepper } from './stepper';
 import { QunoStepperNext, QunoStepperPrevious } from './stepper-button';
 import { QunoStepHeader } from './step-header';
-import { QunoStepLabel } from './step-label';
-import { QunoStepperIcon } from './stepper-icon';
+// import { QunoStepLabel } from './step-label';
 import { qunoStepperAnimations } from './stepper-animations';
 
 
@@ -30,9 +29,8 @@ import { qunoStepperAnimations } from './stepper-animations';
     QunoStepper,
     QunoStepperNext,
     QunoStepperPrevious,
-    QunoStepperIcon,
     QunoStepHeader,
-    QunoStepLabel
+    // QunoStepLabel
   ],
   declarations: [
     QunoHorizontalStepper,
@@ -41,9 +39,8 @@ import { qunoStepperAnimations } from './stepper-animations';
     QunoStepper,
     QunoStepperNext,
     QunoStepperPrevious,
-    QunoStepperIcon,
     QunoStepHeader,
-    QunoStepLabel
+    // QunoStepLabel
   ],
   providers: [ErrorStateMatcher]
 })

@@ -10,11 +10,9 @@
       [attr.aria-selected]="selectedIndex == i"
       [index]="i"
       [state]="_getIndicatorType(i)"
-      [label]="step.stepLabel || step.label"
       [selected]="selectedIndex === i"
       [active]="step.completed || selectedIndex === i || !linear"
-      [optional]="step.optional"
-      [iconOverrides]="_iconOverrides">
+      [optional]="step.optional">
     </quno-step-header>
     <div *ngIf="!isLast" class="quno-stepper-horizontal-line"></div>
   </ng-container>

@@ -22,10 +22,9 @@ import {
 import { FormControl, FormGroupDirective, NgForm } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { QunoStepHeader } from './step-header';
-import { QunoStepLabel } from './step-label';
+// import { QunoStepLabel } from './step-label';
 import { takeUntil } from 'rxjs/operators';
 import { qunoStepperAnimations } from './stepper-animations';
-import { QunoStepperIcon, QunoStepperIconContext } from './stepper-icon';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -39,7 +38,7 @@ import { QunoStepperIcon, QunoStepperIconContext } from './stepper-icon';
 export class QunoStep extends CdkStep implements ErrorStateMatcher {
 
   /** Content for step label given by '<ng-template qunoStepLabel>' */
-  @ContentChild(QunoStepLabel) stepLabel: QunoStepLabel;
+  // @ContentChild(QunoStepLabel) stepLabel: QunoStepLabel;
 
   constructor( @Inject(forwardRef(() => QunoStepper)) stepper: QunoStepper,
                @SkipSelf() private _errorStateMatcher: ErrorStateMatcher ) {
@@ -72,26 +71,10 @@ export class QunoStepper extends CdkStepper implements AfterContentInit {
   /** Steps that the stepper holds */
   @ContentChildren(QunoStep) _steps: QueryList<QunoStep>;
 
-  /** Custom icon overrides passed in by the consumer. */
-  @ContentChildren(QunoStepperIcon) _icons: QueryList<QunoStepperIcon>;
-
   /** Event emitted when the current step is done transitioning in. */
   @Output() readonly animationDone: EventEmitter<void> = new EventEmitter<void>();
 
-  /** Consumer-specified template-refs to be used to override the header icons. */
-  _iconOverrides: {[key: string]: TemplateRef<QunoStepperIconContext>} = {};
-
   ngAfterContentInit() {
-    const icons = this._icons.toArray();
-
-    ['edit', 'done', 'number'].forEach(name => {
-      const override = icons.find(icon => icon.name === name);
-
-      if (override) {
-        this._iconOverrides[name] = override.templateRef;
-      }
-    });
-
     // Mark the component for change detection whenever the content children query changes
     this._steps.changes.pipe(takeUntil(this._destroyed)).subscribe(() => this._stateChanged() );
   }

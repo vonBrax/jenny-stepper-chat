@@ -4,9 +4,7 @@ Input,
 TemplateRef,
 ElementRef,
 /* ChangeDetectorRef */ } from '@angular/core';
-
-import { QunoStepLabel } from './step-label';
-import { QunoStepperIconContext } from './stepper-icon';
+// import { QunoStepLabel } from './step-label';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -28,10 +26,7 @@ export class QunoStepHeader implements OnDestroy {
   @Input() state: string;
 
   /** Label of the given step */
-  @Input() label: QunoStepLabel | string;
-
-  /** Overrides for the header icons, passed in via the stepper */
-  @Input() iconOverrides: {[key: string]: TemplateRef<QunoStepperIconContext>};
+  // @Input() label: QunoStepLabel | string;
 
   /** Index of the given step */
   @Input() index: number;
@@ -57,27 +52,18 @@ export class QunoStepHeader implements OnDestroy {
   }
 
   /** Returns string label of given step if it is a string label  */
-  _stringLabel(): string | null {
-    return this.label instanceof QunoStepLabel ? null : this.label;
-  }
+  // _stringLabel(): string | null {
+  //   return this.label instanceof QunoStepLabel ? null : this.label;
+  // }
 
-  /** Returns QunoStepLabel if the label of a given step is a template label */
-  _templateLabel(): QunoStepLabel | null {
-    return this.label instanceof QunoStepLabel ? this.label : null;
-  }
+  // /** Returns QunoStepLabel if the label of a given step is a template label */
+  // _templateLabel(): QunoStepLabel | null {
+  //   return this.label instanceof QunoStepLabel ? this.label : null;
+  // }
 
   /** Returns the host HTML element */
   _getHostElement() {
     return this._element.nativeElement;
-  }
-
-  /** Template context variable that are exposed to the 'qunoStepperIcon' instances */
-  _getIconContext(): QunoStepperIconContext {
-    return {
-      index: this.index,
-      active: this.active,
-      optional: this.optional
-    };
   }
 
   focus() {
