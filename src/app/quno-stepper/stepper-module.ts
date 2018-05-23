@@ -6,12 +6,7 @@ import { MatCommonModule, MatRippleModule, ErrorStateMatcher } from '@angular/ma
 import { MatIconModule } from '@angular/material/icon';
 import { QunoHorizontalStepper, QunoStep, QunoStepper, QunoVerticalStepper } from './stepper';
 import { QunoStepperNext, QunoStepperPrevious } from './stepper-button';
-import { QunoStepHeader } from './step-header';
-import { QunoStepLabel } from './step-label';
-import { QunoStepperIcon } from './stepper-icon';
 import { qunoStepperAnimations } from './stepper-animations';
-
-
 
 @NgModule({
   imports: [
@@ -30,9 +25,6 @@ import { qunoStepperAnimations } from './stepper-animations';
     QunoStepper,
     QunoStepperNext,
     QunoStepperPrevious,
-    QunoStepperIcon,
-    QunoStepHeader,
-    QunoStepLabel
   ],
   declarations: [
     QunoHorizontalStepper,
@@ -41,9 +33,6 @@ import { qunoStepperAnimations } from './stepper-animations';
     QunoStepper,
     QunoStepperNext,
     QunoStepperPrevious,
-    QunoStepperIcon,
-    QunoStepHeader,
-    QunoStepLabel
   ],
   providers: [ErrorStateMatcher]
 })

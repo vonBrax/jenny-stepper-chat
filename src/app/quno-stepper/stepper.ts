@@ -1,3 +1,4 @@
+import { FocusMonitor } from '@angular/cdk/a11y';
 import { Directionality } from '@angular/cdk/bidi';
 import { CdkStep, CdkStepper, StepContentPositionState } from '@angular/cdk/stepper';
 import { AnimationEvent } from '@angular/animations';
@@ -9,23 +10,24 @@ import {
   ContentChild,
   ContentChildren,
   Directive,
+  ElementRef,
   EventEmitter,
   forwardRef,
   Inject,
+  Input,
+  OnDestroy,
   Optional,
   Output,
   QueryList,
   SkipSelf,
-  TemplateRef,
+  ViewChild,
   ViewChildren,
-  ViewEncapsulation } from '@angular/core';
+  ViewEncapsulation
+  } from '@angular/core';
 import { FormControl, FormGroupDirective, NgForm } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
-import { QunoStepHeader } from './step-header';
-import { QunoStepLabel } from './step-label';
 import { takeUntil } from 'rxjs/operators';
 import { qunoStepperAnimations } from './stepper-animations';
-import { QunoStepperIcon, QunoStepperIconContext } from './stepper-icon';
 
 @Component({
   // tslint:disable-next-line:component-selector
@@ -38,13 +40,26 @@ import { QunoStepperIcon, QunoStepperIconContext } from './stepper-icon';
 // tslint:disable-next-line:component-class-suffix
 export class QunoStep extends CdkStep implements ErrorStateMatcher {
 
-  /** Content for step label given by '<ng-template qunoStepLabel>' */
-  @ContentChild(QunoStepLabel) stepLabel: QunoStepLabel;
+  // @Input() state: string;
+  // @Input() index: number;
+  // @Input() selected: boolean;
+  // @Input() active: boolean;
+  // @Input() optional: boolean;
 
   constructor( @Inject(forwardRef(() => QunoStepper)) stepper: QunoStepper,
-               @SkipSelf() private _errorStateMatcher: ErrorStateMatcher ) {
+               @SkipSelf() private _errorStateMatcher: ErrorStateMatcher) {
     super(stepper);
   }
+
+  // _getHostElement() {
+  //   return this._element.nativeElement;
+  // }
+  // focus() {
+  //   this._getHostElement().focus();
+  // }
+  // ngOnDestroy() {
+  //   this._focusMonitor.stopMonitoring(this._element.nativeElement);
+  // }
 
   /** Custom error state matcher that additionally checks for validity of interacted form. */
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -67,31 +82,15 @@ export class QunoStep extends CdkStep implements ErrorStateMatcher {
 export class QunoStepper extends CdkStepper implements AfterContentInit {
 
   /** The list of step headers of the steps in the stepper. */
-  @ViewChildren(QunoStepHeader) _stepHeader: QueryList<QunoStepHeader>;
+  @ViewChildren(QunoStep) _stepHeader: QueryList<QunoVerticalStepper>;
 
   /** Steps that the stepper holds */
   @ContentChildren(QunoStep) _steps: QueryList<QunoStep>;
 
-  /** Custom icon overrides passed in by the consumer. */
-  @ContentChildren(QunoStepperIcon) _icons: QueryList<QunoStepperIcon>;
-
   /** Event emitted when the current step is done transitioning in. */
   @Output() readonly animationDone: EventEmitter<void> = new EventEmitter<void>();
 
-  /** Consumer-specified template-refs to be used to override the header icons. */
-  _iconOverrides: {[key: string]: TemplateRef<QunoStepperIconContext>} = {};
-
   ngAfterContentInit() {
-    const icons = this._icons.toArray();
-
-    ['edit', 'done', 'number'].forEach(name => {
-      const override = icons.find(icon => icon.name === name);
-
-      if (override) {
-        this._iconOverrides[name] = override.templateRef;
-      }
-    });
-
     // Mark the component for change detection whenever the content children query changes
     this._steps.changes.pipe(takeUntil(this._destroyed)).subscribe(() => this._stateChanged() );
   }
@@ -140,15 +139,38 @@ export class QunoHorizontalStepper extends QunoStepper { }
     'aria-orientation': 'vertical',
     'role': 'tablist'
   },
-  animations: [qunoStepperAnimations.verticalStepTransition, qunoStepperAnimations.verticalStepHeaderTransition],
+  animations: [qunoStepperAnimations.verticalStepTransition],
   providers: [{provide: QunoStepper, useExisting: QunoVerticalStepper}],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 // tslint:disable-next-line:component-class-suffix
-export class QunoVerticalStepper extends QunoStepper {
-  constructor(@Optional() dir: Directionality, changeDetectorRef: ChangeDetectorRef) {
+export class QunoVerticalStepper extends QunoStepper implements OnDestroy {
+
+  @Input() state: string;
+  @Input() index: number;
+  @Input() _selected: boolean;
+  @Input() active: boolean;
+  @Input() optional: boolean;
+  @ViewChild('focusable') focusable: ElementRef;
+
+
+  constructor(@Optional() dir: Directionality, changeDetectorRef: ChangeDetectorRef, private _focusMonitor: FocusMonitor,
+               private _element: ElementRef) {
     super(dir, changeDetectorRef);
     this._orientation = 'vertical';
+    _focusMonitor.monitor(_element.nativeElement, true);
+  }
+
+  _getHostElement() {
+    // return this._element.nativeElement;
+    console.log(this.index);
+    return this.focusable.nativeElement;
+  }
+  focus() {
+    this._getHostElement().focus();
+  }
+  ngOnDestroy() {
+    this._focusMonitor.stopMonitoring(this._element.nativeElement);
   }
 }

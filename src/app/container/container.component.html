@@ -1,113 +1,24 @@
 <form [formGroup]="formGroup">
 <quno-vertical-stepper linear>
-  <quno-step [stepControl]="formGroup.get('tos_agree')">
-    
-    <ng-template qunoStepLabel>
-      <div class="selected-answer-wrap">
-        <div class="left">
-          <div class="quno-lens">
-            <img src="../assets/quno_lens.png">
-          </div>
-          <div class="quno-question" [innerHTML]="step1.innerHTML"></div> 
-        </div>
-        <div class="right">
-          <div class="user"></div>
-          <div class="selected-answer">
-            <span>{{formGroup.get('tos_agree').value}}</span>
-          </div>
-        </div>
-      </div>
-    </ng-template>
-
+  <ng-container *ngFor="let question of questions; let i = index">
+  <quno-step [stepControl]="formGroup.get(question.field)">
     <div class="quno-step-content-wrapper">
       <div class="quno-lens quno-lens--absolute">
-        <img src="../assets/quno_lens.png">
+        <img src="../assets/quno_lens.png" (click)="selectStep(i)">
       </div>
       <div class="quno-question" #step1>
-        <p>Hi,</p>
-        <p>In order for us to answer medical questions, we need you to agree to the Terms and Conditions and that Qunomedical may collect, process, use, and disclose your personal information, including your health data, in order to provide a personal and customized service and as further detailed in your Consent Declaration.</p>
+        <p>{{question.question}}</p>
       </div>
       <div class="quno-answers" (click)="handleClick($event)">
         <div class="user"></div>
-        <label class="btn-answer"><input type="radio" value="I agree" formControlName="tos_agree"><span>I agree</span></label>
-        <button type="button" class="btn-answer">I don't agree</button>
+        <label class="btn-answer" *ngFor="let answer of question.answers"><input type="radio" value="answer" [formControlName]="question.field"><span>{{answer}}</span></label>
       </div>
     </div>
     <button type="button" #btnNext qunoStepperNext style="display:none">NEXT</button>
   </quno-step>
-
-  <quno-step [stepControl]="formGroup.get('additional_info_grafts')">
-    
-    <ng-template qunoStepLabel>
-      <div class="selected-answer-wrap">
-        <div class="left">
-          <div class="quno-lens">
-            <img src="../assets/quno_lens.png">
-          </div>
-          <div class="quno-question" [innerHTML]="step2.innerHTML"></div> 
-        </div>
-        <div class="right">
-          <div class="user"></div>
-          <div class="selected-answer">
-            <span>{{formGroup.get('additional_info_grafts').value}}</span>
-          </div>
-        </div>
-      </div>
-    </ng-template>
-
-    <div class="quno-step-content-wrapper">
-      <div class="quno-lens quno-lens--absolute">
-        <img src="../assets/quno_lens.png">
-      </div>
-      <div class="quno-question" #step2>
-        <p>How many grafts do you need?</p>
-      </div>
-      <div class="quno-answers" (click)="handleClick($event)">
-        <div class="user"></div>
-        <label class="btn-answer"><input type="radio" name="additional_info_grafts" formControlName="additional_info_grafts" value="1,000 grafts"><span>1,000 grafts</span></label>
-        <label class="btn-answer"><input type="radio" name="additional_info_grafts" formControlName="additional_info_grafts" value="2,000 grafts"><span>2,000 grafts</span></label>
-        <label class="btn-answer"><input type="radio" name="additional_info_grafts" formControlName="additional_info_grafts" value="3,000 grafts"><span>3,000 grafts</span></label>
-        <label class="btn-answer"><input type="radio" name="additional_info_grafts" formControlName="additional_info_grafts" value="4,000 grafts"><span>4,000 grafts</span></label>
-        <label class="btn-answer"><input type="radio" name="additional_info_grafts" formControlName="additional_info_grafts" value="More than 4,000 grafts"><span>More than 4,000 grafts</span></label>
-        <label class="btn-answer"><input type="radio" name="additional_info_grafts" formControlName="additional_info_grafts" value="What is a graft?"><span>What is a graft?</span></label>
-      </div>
-    </div>
-  </quno-step>
-  <quno-step [stepControl]="formGroup.get('additional_info_age')">
-   
-    <ng-template qunoStepLabel>
-      <div class="selected-answer-wrap">
-        <div class="left">
-          <div class="quno-lens">
-            <img src="../assets/quno_lens.png">
-          </div>
-          <div class="quno-question" [innerHTML]="step3.innerHTML"></div> 
-        </div>
-        <div class="right">
-          <div class="user"></div>
-          <div class="selected-answer">
-            <span>{{formGroup.get('additional_info_age').value}}</span>
-          </div>
-        </div>
-      </div>
-    </ng-template>
-
-   <div class="quno-step-content-wrapper">
-      <div class="quno-lens quno-lens--absolute">
-        <img src="../assets/quno_lens.png">
-      </div>
-      <div class="quno-question" #step3>
-        <p>How old are you?</p>
-      </div>
-      <div class="quno-answers">
-        <div class="user"></div>
-        <label class="btn-answer" (click)="btnNext.click()"><input type="radio" name="additional_info_age" formControlName="additional_info_age" value="18-25"><span>18-25</span></label>
-        <label class="btn-answer" (click)="btnNext.click()"><input type="radio" name="additional_info_age" formControlName="additional_info_age" value="26-35"><span>26-35</span></label>
-        <label class="btn-answer" (click)="btnNext.click()"><input type="radio" name="additional_info_age" formControlName="additional_info_age" value="36-45"><span>36-45</span></label>
-        <label class="btn-answer" (click)="btnNext.click()"><input type="radio" name="additional_info_age" formControlName="additional_info_age" value="46-55"><span>46-55</span></label>
-        <label class="btn-answer" (click)="btnNext.click()"><input type="radio" name="additional_info_age" formControlName="additional_info_age" value="56 and older"><span>56 and older</span></label>
-      </div>
-    </div>
-  </quno-step>
+  </ng-container>
 </quno-vertical-stepper>
 </form>
+
+<p>{{formGroup.value | json}}</p>
+<p>Valid? - {{formGroup.valid}}</p>
