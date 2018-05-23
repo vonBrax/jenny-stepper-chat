@@ -1,5 +1,6 @@
 :host {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
 }
 
@@ -121,10 +122,12 @@
     transform: translate(50%, 50%);
     */
   }
+  /*
   :host /deep/ quno-step-header {
     max-height: initial;
     flex-flow: column nowrap;
   }
+  */
 
   :host /deep/ .quno-step-label {
     width: 100%;

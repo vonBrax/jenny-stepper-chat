@@ -9,16 +9,20 @@ import {
   ContentChild,
   ContentChildren,
   Directive,
+  ElementRef,
   EventEmitter,
   forwardRef,
   Inject,
+  Input,
+  OnDestroy,
   Optional,
   Output,
   QueryList,
   SkipSelf,
-  TemplateRef,
+  ViewChild,
   ViewChildren,
-  ViewEncapsulation } from '@angular/core';
+  ViewEncapsulation
+  } from '@angular/core';
 import { FormControl, FormGroupDirective, NgForm } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { QunoStepHeader } from './step-header';
@@ -41,9 +45,19 @@ export class QunoStep extends CdkStep implements ErrorStateMatcher {
   // @ContentChild(QunoStepLabel) stepLabel: QunoStepLabel;
 
   constructor( @Inject(forwardRef(() => QunoStepper)) stepper: QunoStepper,
-               @SkipSelf() private _errorStateMatcher: ErrorStateMatcher ) {
+               @SkipSelf() private _errorStateMatcher: ErrorStateMatcher) {
     super(stepper);
   }
+
+  // _getHostElement() {
+  //   return this._element.nativeElement;
+  // }
+  // focus() {
+  //   this._getHostElement().focus();
+  // }
+  // ngOnDestroy() {
+  //   this._focusMonitor.stopMonitoring(this._element.nativeElement);
+  // }
 
   /** Custom error state matcher that additionally checks for validity of interacted form. */
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -101,7 +115,7 @@ export class QunoStepper extends CdkStepper implements AfterContentInit {
     'aria-orientation': 'horizontal',
     'role': 'tablist'
   },
-  animations: [qunoStepperAnimations.horizontalStepTransition],
+  animations: [qunoStepperAnimations.horizontalStepTransition, qunoStepperAnimations.verticalStepTransition],
   providers: [{provide: QunoStepper, useExisting: QunoHorizontalStepper}],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
@@ -123,13 +137,14 @@ export class QunoHorizontalStepper extends QunoStepper { }
     'aria-orientation': 'vertical',
     'role': 'tablist'
   },
-  animations: [qunoStepperAnimations.verticalStepTransition, qunoStepperAnimations.verticalStepHeaderTransition],
+  animations: [qunoStepperAnimations.verticalStepTransition],
   providers: [{provide: QunoStepper, useExisting: QunoVerticalStepper}],
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 // tslint:disable-next-line:component-class-suffix
-export class QunoVerticalStepper extends QunoStepper {
+export class QunoVerticalStepper extends QunoStepper implements OnDestroy {
+
   constructor(@Optional() dir: Directionality, changeDetectorRef: ChangeDetectorRef) {
     super(dir, changeDetectorRef);
     this._orientation = 'vertical';

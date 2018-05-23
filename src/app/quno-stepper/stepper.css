@@ -47,6 +47,7 @@
   margin-left: var(--stepper-line-gap)
 }
 
+/*
 .quno-vertical-stepper-header {
   display: flex;
   align-items: center;
@@ -64,7 +65,7 @@
   margin-right: 0;
   margin-left: calc(var(--vertical-stepper-content-margin) - var(--stepper-side-gap));
 }
-
+*/
 .quno-horizontal-stepper-content[aria-expanded="false"] {
   height: 0;
   overflow: hidden;

@@ -10,8 +10,6 @@ import { QunoStepHeader } from './step-header';
 // import { QunoStepLabel } from './step-label';
 import { qunoStepperAnimations } from './stepper-animations';
 
-
-
 @NgModule({
   imports: [
     CommonModule,
