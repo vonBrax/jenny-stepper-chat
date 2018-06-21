@@ -2,27 +2,28 @@ import { Directionality } from '@angular/cdk/bidi';
 import { CdkStep, CdkStepper, StepContentPositionState } from '@angular/cdk/stepper';
 import { AnimationEvent } from '@angular/animations';
 import {
-  AfterContentInit,
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  ContentChild,
-  ContentChildren,
-  Directive,
-  ElementRef,
-  EventEmitter,
-  forwardRef,
-  Inject,
-  Input,
-  OnDestroy,
-  Optional,
-  Output,
-  QueryList,
-  SkipSelf,
-  ViewChild,
-  ViewChildren,
-  ViewEncapsulation
-  } from '@angular/core';
+    AfterContentInit,
+    ChangeDetectionStrategy,
+    ChangeDetectorRef,
+    Component,
+    ContentChild,
+    ContentChildren,
+    Directive,
+    ElementRef,
+    EventEmitter,
+    forwardRef,
+    Inject,
+    Input,
+    OnDestroy,
+    Optional,
+    Output,
+    QueryList,
+    SkipSelf,
+    TemplateRef,
+    ViewChild,
+    ViewChildren,
+    ViewEncapsulation,
+} from '@angular/core';
 import { FormControl, FormGroupDirective, NgForm } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { QunoStepHeader } from './step-header';
@@ -45,7 +46,8 @@ export class QunoStep extends CdkStep implements ErrorStateMatcher {
   // @ContentChild(QunoStepLabel) stepLabel: QunoStepLabel;
 
   constructor( @Inject(forwardRef(() => QunoStepper)) stepper: QunoStepper,
-               @SkipSelf() private _errorStateMatcher: ErrorStateMatcher) {
+               @SkipSelf() private _errorStateMatcher: ErrorStateMatcher,
+               /* private _element: ElementRef */ ) {
     super(stepper);
   }
 

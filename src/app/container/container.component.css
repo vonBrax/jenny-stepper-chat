@@ -75,20 +75,21 @@
     margin-top: .5em;
   }
 
-  .quno-answers .btn-answer {
+  /* .quno-answers */ .btn-answer {
     background-color: #FFCA57;
     border: none;
     border-radius: 5px;
-    box-shadow: 0 0 5px 0 (rgba 0, 0, 0, 0.3);
+    box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.3);
     color: #585a51;
     cursor: pointer;
     font-size: 1em;
     margin: 2.5px 0;
     padding: .5em 1em;
     transition: transform 200ms ease-in, box-shadow 200ms ease-in;
+    will-change: transform, box-shadow;
   }
 
-  .quno-answers .btn-answer:hover {
+  .quno-answers .btn-answer:not(.selected-answer):hover {
       transform: scale(1.15);
       box-shadow: 0 0 20px -2px rgba(0, 0, 0, .30);
   }
@@ -115,6 +116,7 @@
     margin-bottom: .5em;
     height: 30px;
     width: 30px;
+    z-index: 1;
     /*
     position: absolute;
     right: 100%;
@@ -136,7 +138,42 @@
   :host /deep/ .quno-step-icon {
       align-self: flex-end;
   }
+/* 
+  :host /deep/ .quno-step-content-wrapper:not(.step-active) .selected-answer {
+    transform: translateY(-50%);
+  } */
 
+  :host /deep/ .selected-answer {
+    transform: translateY(-50%);
+    box-shadow: none;
+    cursor: default;
+  }
+/* 
+  :host /deep/ .quno-step-content-wrapper:not(.step-active) .quno-answers label:not(.selected-answer) {
+    display: none;
+  }
+ */
+
+ :host /deep/ .selected-answer::after {
+  content: "edit";
+  height: 20px;
+  width: 50px;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  border: 1px solid black;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 8px;
+  line-height: 20px;
+  text-align: center;
+ }
+
+  :host /deep/ .quno-step-content-wrapper:not(.step-active) label:not(.selected-answer) {
+    display: none;
+  }
+
+/* 
   .selected-answer-wrap {
     display: flex;
     flex-flow: column nowrap;
@@ -154,6 +191,7 @@
       margin-left: auto;
       margin-bottom: 0;
       transform: translate(50%, 50%);
+      z-index: 0;
   }
 
   .selected-answer {
@@ -165,4 +203,4 @@
     font-size: 1em;
     margin: 0 0 .5em;
     padding: .5em 1em;
-  }
+  } */

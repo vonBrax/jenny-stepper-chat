@@ -2,7 +2,7 @@
 <quno-vertical-stepper linear>
   <ng-container *ngFor="let question of questions; let i = index">
   <quno-step [stepControl]="formGroup.get(question.field)">
-    <div class="quno-step-content-wrapper">
+    <div class="quno-step-content-wrapper" [class.step-active]="_stepper.selectedIndex === i">
       <div class="quno-lens quno-lens--absolute">
         <img src="../assets/quno_lens.png" (click)="selectStep(i)">
       </div>
@@ -11,7 +11,16 @@
       </div>
       <div class="quno-answers" (click)="handleClick($event)">
         <div class="user"></div>
-        <label class="btn-answer" *ngFor="let answer of question.answers"><input type="radio" value="answer" [formControlName]="question.field"><span>{{answer}}</span></label>
+        
+          <label *ngFor="let answer of question.answers" class="btn-answer">
+            <input type="radio" [value]="answer" [formControlName]="question.field">
+            <span>{{answer}}</span>
+          </label>
+          <mat-form-field *ngIf="!question.answers" appearance="outline">
+            <input matInput type="text">
+          </mat-form-field>
+        
+        
       </div>
     </div>
     <button type="button" #btnNext qunoStepperNext style="display:none">NEXT</button>
